@@ -1,0 +1,2 @@
+defmodule ElixirEtudes do
+end
