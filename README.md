@@ -1,20 +1,5 @@
 # ElixirEtudes
 
-**TODO: Add description**
+## Description
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
-  1. Add elixir_etudes to your list of dependencies in `mix.exs`:
-
-        def deps do
-          [{:elixir_etudes, "~> 0.0.1"}]
-        end
-
-  2. Ensure elixir_etudes is started before your application:
-
-        def application do
-          [applications: [:elixir_etudes]]
-        end
-
+"Études" is French for "studies". This is a repository of studies of various programming styles in the [Elixir programming language](http://elixir-lang.org) based on the [Études for Elixir book](http://chimera.labs.oreilly.com/books/1234000001642) by J. David Eisenberg.
