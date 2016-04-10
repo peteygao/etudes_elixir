@@ -6,6 +6,30 @@ defmodule Powers do
   """
 
   @doc """
+    Etudes 4-5
+    Gets the nth root of a number
+  """
+  @spec nth_root(number(), number()) :: number()
+
+  def nth_root(num, root) when 0 < root do
+    nth_root(num, root, num / root)
+  end
+
+  defp nth_root(num, root, approx) do
+    f       = raise(approx, root) - num
+    f_prime = root * raise(approx, root - 1)
+    next    = approx - f / f_prime
+    change  = :erlang.abs(next - approx)
+    cond do
+      0.00000001 < change ->
+        nth_root(num, root, next)
+      true ->
+        next
+    end
+  end
+
+  @doc """
+    Etudes 4-4
     Tail recursion optimized raise to the power method
   """
   @spec raise(number(), number()) :: number()
