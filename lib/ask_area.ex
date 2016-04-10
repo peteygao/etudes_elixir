@@ -43,9 +43,27 @@ defmodule AskArea do
   @spec get_number(String.t()) :: number()
 
   def get_number(prompt) do
-    IO.gets("Enter #{prompt}: ")
-      |> String.strip
-      |> :erlang.binary_to_integer
+    IO.gets("Enter #{prompt}: ") |> string_to_number
+  end
+
+  @doc """
+    Etudes 5-2
+    Takes in a string and converts it to an integer or float
+    if the input is a valid number.
+    Returns a number from the input.
+  """
+  @spec string_to_number(String.t()) :: number()
+
+  def string_to_number(string) do
+    candidate_string = string |> String.strip
+    cond do
+      Regex.match?(~r/\d\.\d/, candidate_string) ->
+        :erlang.binary_to_float candidate_string
+      Regex.match?(~r/\d/, candidate_string) ->
+        :erlang.binary_to_integer candidate_string
+      true ->
+        raise "Invalid input for a number."
+    end
   end
 
   @doc """
@@ -76,6 +94,6 @@ defmodule AskArea do
   end
 
   def calculate(_, {_, _}) do
-    IO.puts "Invalid dimensions."
+    raise "Invalid dimensions."
   end
 end
