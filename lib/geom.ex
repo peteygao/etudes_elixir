@@ -19,13 +19,9 @@ defmodule Geom do
     and second number refers to the minor radius.
   """
 
-  @spec area({atom(), number(), number()}) :: number()
+  @spec area(atom(), number(), number()) :: number()
 
-  def area({shape, dim1, dim2}) do
-    area(shape, dim1, dim2)
-  end
-
-  defp area(shape, dim1, dim2) when dim1 > 0 and dim2 > 0 do
+  def area(shape, dim1, dim2) when dim1 > 0 and dim2 > 0 do
     case shape do
       :rectangle ->
         dim1 * dim2
@@ -36,9 +32,5 @@ defmodule Geom do
       _ ->
         0
     end
-  end
-
-  defp area(_, _, _) do
-    0
   end
 end
