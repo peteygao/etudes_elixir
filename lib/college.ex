@@ -40,9 +40,7 @@ defmodule College do
   end
 
   defp lines_to_rooms [line | lines], rooms_map do
-    {_, _course_id}   = Enum.fetch(line, 0)
-    {_, course_name} = Enum.fetch(line, 1)
-    {_, room_number} = Enum.fetch(line, 2)
+    [_course_id, course_name, room_number] = line
 
     new_map = Map.update(rooms_map, room_number, [course_name],
       fn(course_list) ->
