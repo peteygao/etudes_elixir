@@ -8,6 +8,7 @@ defmodule NonFP do
   Generates a list of teeth with their corresponding gum depth based
   on input teeth list (T for teeth, F for no teeth) and probability
   that the teeth is a good teeth.
+  Etudes 6-4
   """
   @spec generate_pockets([char()], [number()]) :: [[integer()]]
 
