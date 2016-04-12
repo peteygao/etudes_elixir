@@ -1,7 +1,9 @@
 defmodule Geography do
   @moduledoc """
-  Functions for generating Geographic structured data
+  Functions for generating structured Geographic data.
   """
+
+  @type geo_list :: list(Country.t())
 
   @doc """
   Return a list of Countries. Countries is a struct with the keys
@@ -9,7 +11,7 @@ defmodule Geography do
   for name, population, latitude and longitude.
   Etudes 7-2
   """
-  @spec make_geo_list(String.t()) :: list(Country.t())
+  @spec make_geo_list(String.t()) :: geo_list
 
   def make_geo_list file_name do
     {result, file} = File.open(file_name, [:read, :utf8])
@@ -61,5 +63,31 @@ defmodule Geography do
     end
 
     [updated_country | countries_list]
+  end
+
+  @doc """
+  Returns the total population of speakers of a particular language.
+  Etudes 7-3
+  """
+  @spec total_population(geo_list, String.t()) :: integer()
+
+  def total_population geo_list, language do
+    Enum.find(geo_list, fn(country) ->
+      Map.get(country, :language) === language
+    end)
+      |> population_for
+  end
+
+  defp population_for country do
+    cities = Map.get country, :cities
+    population_for cities, 0
+  end
+
+  defp population_for [], total_population do
+    total_population
+  end
+
+  defp population_for [city | cities], total_population do
+    population_for cities, total_population + Map.get(city, :population)
   end
 end

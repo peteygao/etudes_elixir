@@ -3,7 +3,7 @@ defmodule GeographyTest do
   doctest Geography
 
   test "returns a list of %Country{}" do
-    assert Geography.make_geo_list("test/data/geography_test.csv") == [
+    assert Geography.make_geo_list("test/data/geography_test.csv") === [
       %Country{
         language: "German",
         name:     "Germany",
@@ -35,5 +35,15 @@ defmodule GeographyTest do
         ]
       }
     ]
+  end
+
+  test "returns the total population of a multi-city language" do
+    geo_list = Geography.make_geo_list("test/data/geography_test.csv")
+    assert Geography.total_population(geo_list, "German") === 2225971
+  end
+
+  test "returns the total population of a single city language" do
+    geo_list = Geography.make_geo_list("test/data/geography_test.csv")
+    assert Geography.total_population(geo_list, "Spanish") === 3255944
   end
 end
